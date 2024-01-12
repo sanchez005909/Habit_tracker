@@ -2,22 +2,17 @@ import os
 from datetime import datetime, timedelta
 import requests
 from celery import shared_task
-from django.conf import settings
-from django.utils import timezone
 import telebot
-
 from habits.management.commands.bot import Command
 from habits.models import Habit
 from users.models import User
 
 bot = telebot.TeleBot(os.getenv('TELEGRAM_BOT_TOKEN'))
-command = Command
-
 
 @shared_task
 def send_habit():
     # requests.post(
-    url_send=f'https://api.telegram.org/bot6274986298:AAGCCkDZoA3vVQ7xi1esFnq09w5CxsfmaRc/sendMessage'
+    url_send=f'https://api.telegram.org/bot{os.getenv("TELEGRAM_BOT_TOKEN")}/sendMessage'
     # chat_id=849055520&text=privet')
     t_now = datetime.now().time()
     dt_now = datetime.now().date()
