@@ -17,8 +17,7 @@ command = Command
 @shared_task
 def send_habit():
     # requests.post(
-    url_send=f'https://api.telegram.org/bot6274986298:AAGCCkDZoA3vVQ7xi1esFnq09w5CxsfmaRc/sendMessage'
-    # chat_id=849055520&text=privet')
+    url_send=f'https://api.telegram.org/bot{os.getenv("TELEGRAM_BOT_TOKEN")}/sendMessage'
     t_now = datetime.now().time()
     dt_now = datetime.now().date()
     users = User.objects.all()
