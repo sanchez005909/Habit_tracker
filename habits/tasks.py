@@ -2,8 +2,6 @@ import os
 from datetime import datetime, timedelta
 import requests
 from celery import shared_task
-from django.conf import settings
-from django.utils import timezone
 import telebot
 
 from habits.management.commands.bot import Command
@@ -17,7 +15,7 @@ command = Command
 @shared_task
 def send_habit():
     # requests.post(
-    url_send=f'https://api.telegram.org/bot{os.getenv("TELEGRAM_BOT_TOKEN")}/sendMessage'
+    url_send = f'https://api.telegram.org/bot{os.getenv("TELEGRAM_BOT_TOKEN")}/sendMessage'
     t_now = datetime.now().time()
     dt_now = datetime.now().date()
     users = User.objects.all()
@@ -30,7 +28,8 @@ def send_habit():
                     text = f'Я буду {habit.action} в {habit.time} в {habit.place}'
                 elif habit.related_habit:
                     text = (
-                        f'Я буду {habit.action} в {habit.time} в {habit.place}. За эту полезную привычку сделаю приятную:'
+                        f'Я буду {habit.action} в {habit.time} в {habit.place}. '
+                        f'За эту полезную привычку сделаю приятную:'
                         f' {habit.related_habit}')
                 elif habit.prize:
                     text = f'Я буду {habit.action} в {habit.time} в {habit.place}. Вознаграждение: {habit.prize}'
@@ -40,4 +39,3 @@ def send_habit():
                 requests.post(url=url_send, params=params)
                 habit.date += timedelta(days=habit.period)
                 habit.save()
-
