@@ -9,13 +9,13 @@ from users.models import User
 
 bot = telebot.TeleBot(os.getenv('TELEGRAM_BOT_TOKEN'))
 
-
 @shared_task
 def send_habit():
-    # requests.post(
+
     url_send = (f'https://api.telegram.org/bot'
                 f'{os.getenv("TELEGRAM_BOT_TOKEN")}/sendMessage')
     dt_now = datetime.now().strftime('%y-%m-%d %H:%M')
+
     users = User.objects.all()
     for user in users:
         habits = Habit.objects.filter(owner=user)
