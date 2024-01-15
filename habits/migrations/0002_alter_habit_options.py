@@ -12,6 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='habit',
-            options={'verbose_name': 'привычка', 'verbose_name_plural': 'привычки'},
+            options={'verbose_name': 'привычка',
+                     'verbose_name_plural': 'привычки'},
         ),
     ]

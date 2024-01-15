@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from rest_framework.decorators import action, permission_classes
-from rest_framework.viewsets import ViewSet, ModelViewSet
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from habits.models import Habit
 from habits.permissions import IsOwner

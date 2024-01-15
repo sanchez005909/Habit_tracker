@@ -16,15 +16,18 @@ class Command(BaseCommand):
 
     @bot.message_handler(commands=['start'])
     def start(message):
-        bot.send_message(message.chat.id, "Добро пожаловать! Для получения привычек укажите свой email!")
+        bot.send_message(message.chat.id, "Добро пожаловать! Для получения"
+                                          " привычек укажите свой email!")
 
+    @staticmethod
     @bot.message_handler(content_types='text')
-    def get_chat_id_for_user(massage):
-        email = massage.text.strip()
-        chat_id = massage.chat.id
+    def get_chat_id_for_user(message):
+        email = message.text.strip()
+        chat_id = message.chat.id
         user = User.objects.filter(email=email).first()
         if user:
-            bot.send_message(chat_id, 'Теперь вы будете получать напоминания о своих привычках!')
+            bot.send_message(chat_id, 'Теперь вы будете получать '
+                                      'напоминания о своих привычках!')
             user.chat_id = chat_id
             user.save()
         else:

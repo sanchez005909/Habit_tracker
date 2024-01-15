@@ -13,11 +13,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='habit',
             name='last_execution',
-            field=models.TimeField(blank=True, null=True, verbose_name='последнее выполнение'),
+            field=models.TimeField(blank=True, null=True,
+                                   verbose_name='последнее выполнение'),
         ),
         migrations.AlterField(
             model_name='habit',
             name='time_do_it',
-            field=models.TimeField(blank=True, null=True, verbose_name='время делать это'),
+            field=models.TimeField(blank=True, null=True,
+                                   verbose_name='время делать это'),
         ),
     ]

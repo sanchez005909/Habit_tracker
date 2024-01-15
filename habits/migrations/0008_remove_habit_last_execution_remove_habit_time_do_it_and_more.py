@@ -22,11 +22,14 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='habit',
             name='date',
-            field=models.DateField(default=datetime.date(2024, 1, 12), verbose_name='дата'),
+            field=models.DateField(default=datetime.date(2024, 1, 12),
+                                   verbose_name='дата'),
         ),
         migrations.AddField(
             model_name='habit',
             name='time',
-            field=models.TimeField(default=datetime.time(17, 1, 39, 883107), verbose_name='время делать это'),
+            field=models.TimeField(default=datetime.time(
+                17, 1, 39, 883107),
+                verbose_name='время делать это'),
         ),
     ]

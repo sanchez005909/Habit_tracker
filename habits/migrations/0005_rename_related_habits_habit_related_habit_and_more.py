@@ -18,11 +18,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='habit',
             name='action',
-            field=models.CharField(blank=True, max_length=150, null=True, verbose_name='действие'),
+            field=models.CharField(blank=True, max_length=150, null=True,
+                                   verbose_name='действие'),
         ),
         migrations.AlterField(
             model_name='habit',
             name='time_do_it',
-            field=models.TimeField(auto_now=True, verbose_name='Время делать это'),
+            field=models.TimeField(auto_now=True,
+                                   verbose_name='Время делать это'),
         ),
     ]

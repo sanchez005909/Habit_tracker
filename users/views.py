@@ -1,9 +1,4 @@
-from django.shortcuts import render
-from rest_framework.decorators import permission_classes
-from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
-from rest_framework_simplejwt.views import TokenObtainPairView
 from users.models import User
 from users.serializers import UserSerializer
 
