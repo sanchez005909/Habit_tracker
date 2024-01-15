@@ -13,6 +13,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='chat_id',
-            field=models.IntegerField(blank=True, null=True, verbose_name='chat_id'),
+            field=models.IntegerField(blank=True,
+                                      null=True,
+                                      verbose_name='chat_id'),
         ),
     ]

@@ -100,16 +100,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator',
     },
 ]
 
@@ -141,13 +145,14 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.'
+                                'LimitOffsetPagination',
     'PAGE_SIZE': 5,
 
 }
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
 
 # Настройки срока действия токенов
 SIMPLE_JWT = {
@@ -155,21 +160,19 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
-# CORS_ALLOWED_ORIGINS = [
-#     '<http://localhost:8000>',  # Замените на адрес вашего фронтенд-сервера
-# ]
-#
-# CSRF_TRUSTED_ORIGINS = [
-#     "http://127.0.0.1:8000/docs/",  # Замените на адрес вашего фронтенд-сервера
-#     # и добавьте адрес бэкенд-сервера
-# ]
-#
-# CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = []
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000/docs/",  # Замените на адрес вашего фронтенд-сервера
+    # и добавьте адрес бэкенд-сервера
+]
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}'
 
 # URL-адрес брокера результатов, также Redis
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:{REDIS_PORT}'
 
 # Часовой пояс для работы Celery
 CELERY_TIMEZONE = "Europe/Moscow"
@@ -183,7 +186,8 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BEAT_SCHEDULE = {
     'send_habits': {
         'task': 'habits.tasks.send_habit',  # Путь к задаче
-        'schedule': timedelta(seconds=30),  # Расписание выполнения задачи (например, каждые 10 минут)
+        # Расписание выполнения задачи (например, каждые 10 минут)
+        'schedule': timedelta(seconds=30),
     },
 }
 
