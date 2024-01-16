@@ -26,7 +26,7 @@ class Habit(models.Model):
         max_length=100, **NULLABLE, verbose_name='место')
 
     time_do_it = models.DateTimeField(
-        auto_now=True, verbose_name='время делать это')
+        default=datetime.now, verbose_name='время делать это')
 
     action = models.CharField(
         max_length=150, verbose_name='действие', **NULLABLE)
