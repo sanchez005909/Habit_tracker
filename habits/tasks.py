@@ -39,3 +39,4 @@ def send_habit():
                 requests.post(url=url_send, params=params)
                 habit.date += timedelta(days=habit.period)
                 habit.save()
+
