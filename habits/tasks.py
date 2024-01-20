@@ -38,6 +38,6 @@ def send_habit():
 
             params = {"chat_id": habit.owner.chat_id, "text": text}
 
-            requests.post(url=url_send, params=params)
+            requests.get(url=url_send, params=params)
             habit.time_do_it += timedelta(days=habit.period)
             habit.save()
